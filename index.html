@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="description" content="bret.codes : JavaScript Tips and Style Guide">
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>bret.codes</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/bretcope/bret.codes">View on GitHub</a>
+
+          <h1 id="project_title">bret.codes</h1>
+          <h2 id="project_tagline">JavaScript Tips and Style Guide</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/bretcope/bret.codes/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/bretcope/bret.codes/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <p>Because JavaScript is a very dynamic language, it can lend itself to many different coding styles and paradigms. However, some paradigms are more maintainable or performant than others. The following is a very opinionated guide based on my personal experience maintaining large or long-running JS projects.</p>
+
+<p><strong>Table of Contents</strong></p>
+
+<ul>
+<li>
+<a href="#style-guide">Style Guide</a>
+
+<ul>
+<li><a href="#braces">Braces</a></li>
+<li><a href="#semicolons">Semicolons</a></li>
+<li><a href="#indentation">Indentation</a></li>
+<li><a href="#context-closures">Context Closures</a></li>
+<li><a href="#quotes">Quotes</a></li>
+<li><a href="#equivalence">Equivalence</a></li>
+<li><a href="#file-template">File Template</a></li>
+<li><a href="#naming">Naming</a></li>
+<li><a href="#variable-declaration">Variable Declaration</a></li>
+<li><a href="#function-declaration">Function Declaration</a></li>
+<li><a href="#module-exports">Module Exports</a></li>
+<li><a href="#require-statements">Require Statements</a></li>
+<li><a href="#getters-and-setters">Getters and Setters</a></li>
+</ul>
+</li>
+<li><a href="#code-validation">Code Validation</a></li>
+<li><a href="#third-party">Third Party</a></li>
+<li>
+<a href="#performance">Performance</a>
+
+<ul>
+<li><a href="#iterations">Iterations</a></li>
+<li><a href="#conversions">Conversions</a></li>
+<li><a href="#additional-reading">Additional Reading</a></li>
+</ul>
+</li>
+<li>
+<a href="#workflow">Workflow</a>
+
+<ul>
+<li><a href="#ide">IDE</a></li>
+<li><a href="#when-to-use-a-git-branch">When to use a git branch</a></li>
+</ul>
+</li>
+</ul><h2>
+<a name="style-guide" class="anchor" href="#style-guide"><span class="octicon octicon-link"></span></a>Style Guide</h2>
+
+<h3>
+<a name="braces" class="anchor" href="#braces"><span class="octicon octicon-link"></span></a>Braces</h3>
+
+<p>Braces for code blocks generally get their own line, although closing braces are sometimes combined a closing parenthesis and semicolon. For literal object notation, the opening brace is placed on the same line as the assignment operator or return statement.</p>
+
+<div class="highlight highlight-javascript"><pre><span class="k">if</span> <span class="p">(</span><span class="nx">test</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="c1">//do something</span>
+<span class="p">}</span>
+<span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">test2</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="c1">//do something</span>
+<span class="p">}</span>
+<span class="k">else</span>
+<span class="p">{</span>
+    <span class="c1">//do something</span>
+<span class="p">}</span>
+
+<span class="k">switch</span> <span class="p">(</span><span class="nx">item</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">case</span> <span class="mi">1</span><span class="o">:</span>
+        <span class="c1">//do something</span>
+        <span class="k">break</span><span class="p">;</span>
+    <span class="k">default</span><span class="o">:</span>
+        <span class="c1">//do something</span>
+        <span class="k">break</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="k">do</span>
+<span class="p">{</span>
+    <span class="c1">//something</span>
+<span class="p">}</span>
+<span class="k">while</span> <span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+
+<span class="kd">var</span> <span class="nx">obj</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="nx">x</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="nx">y</span><span class="o">:</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="nx">z</span><span class="o">:</span> <span class="mi">3</span>
+<span class="p">};</span>
+
+<span class="kd">function</span> <span class="nx">func</span> <span class="p">()</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="nx">x</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="nx">y</span><span class="o">:</span> <span class="mi">2</span><span class="p">,</span>
+        <span class="nx">z</span><span class="o">:</span> <span class="mi">3</span>
+    <span class="p">};</span>
+<span class="p">}</span>
+
+<span class="nx">eventEmitter</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">'error'</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="c1">// ...</span>
+<span class="p">});</span>
+</pre></div>
+
+<p>Occasionally it's nice to omit the braces for very simple if statements, though people will have mixed feelings about this. Certainly you should not mix braces and no-braces within a single control flow (in other words, if the <em>if</em> statement has braces, the <em>else</em> should too, even if it could omit them).</p>
+
+<div class="highlight highlight-javascript"><pre><span class="k">if</span> <span class="p">(</span><span class="kc">false</span><span class="p">)</span>
+    <span class="k">return</span><span class="p">;</span>
+</pre></div>
+
+<p>Simple one-line functions are also okay:</p>
+
+<div class="highlight highlight-js"><pre><span class="kd">function</span> <span class="nx">seven</span> <span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="mi">7</span><span class="p">;</span> <span class="p">}</span>
+</pre></div>
+
+<h3>
+<a name="semicolons" class="anchor" href="#semicolons"><span class="octicon octicon-link"></span></a>Semicolons</h3>
+
+<p>Just use them. Seriously, what are you, lazy?</p>
+
+<h3>
+<a name="indentation" class="anchor" href="#indentation"><span class="octicon octicon-link"></span></a>Indentation</h3>
+
+<p>Use <strong><em>tabs</em></strong> for <em>logical</em> indentation, not spaces. In other words, tabs are used to denote code blocks. If you need to align text to specific columns beyond the code block indentation level, use spaces because that is not <em>logical</em> indentation, that's actually visual markup.</p>
+
+<div class="highlight highlight-javascript"><pre><span class="kd">function</span> <span class="nx">x</span> <span class="p">()</span>
+<span class="p">{</span>
+    <span class="c1">// tab-indent to the code level</span>
+
+    <span class="c1">//      use     spaces    to   line   up   comments if necessary</span>
+    <span class="c1">//          1    2    3      4     5</span>
+    <span class="kd">function</span> <span class="nx">y</span> <span class="p">(</span><span class="nx">one</span><span class="p">,</span> <span class="nx">two</span><span class="p">,</span> <span class="nx">three</span><span class="p">,</span> <span class="nx">four</span><span class="p">,</span> <span class="nx">five</span><span class="p">)</span> <span class="p">{}</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>The typical JavaScript style uses two spaces for indentation. This simply isn't enough for me visually to line up blocks down the page at a glance, and therefore requires more mental effort to parse the code. Other people prefer this more condensed look. Tabs allows everyone to get the visual style they want without forcing their own preference on others.</p>
+
+<h3>
+<a name="context-closures" class="anchor" href="#context-closures"><span class="octicon octicon-link"></span></a>Context Closures</h3>
+
+<p>Because the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/this">this</a> keyword is an odd little thing, it is often necessary to create an alias. <strong><em>Always</em></strong> name that alias variable <code>_this</code>. Some people use <code>self</code> or <code>that</code>, but the great thing about <code>_this</code> is that if you do a <code>ctrl-f</code> for <code>this.*</code>, it will always find what you were looking for regardless of whether the alias is being used.</p>
+
+<div class="highlight highlight-javascript"><pre><span class="nx">Class</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">funcA</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span>
+<span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">_this</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+    <span class="kd">function</span> <span class="nx">innerFunction</span> <span class="p">()</span>
+    <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">x</span> <span class="o">=</span> <span class="nx">_this</span><span class="p">.</span><span class="nx">x</span> <span class="o">*</span> <span class="mi">7</span><span class="p">;</span>
+        <span class="c1">//...</span>
+    <span class="p">}</span>
+    <span class="c1">//...</span>
+<span class="p">};</span>
+</pre></div>
+
+<h3>
+<a name="quotes" class="anchor" href="#quotes"><span class="octicon octicon-link"></span></a>Quotes</h3>
+
+<p>For string literals, single-quotes <code>'</code> are preferred over double-quotes <code>"</code> primarily because hitting the shift key is hard. If your string needs to use literal single-quotes inside it, feel free to use double-quotes instead.</p>
+
+<div class="highlight highlight-javascript"><pre><span class="kd">var</span> <span class="nx">str1</span> <span class="o">=</span> <span class="s1">'basic string'</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">str2</span> <span class="o">=</span> <span class="s2">"It's annoying to have to escape the ' character, don't you think?"</span><span class="p">;</span>
+</pre></div>
+
+<h3>
+<a name="equivalence" class="anchor" href="#equivalence"><span class="octicon octicon-link"></span></a>Equivalence</h3>
+
+<p>You should almost always use <code>===</code> instead of <code>==</code>. There are a few limited instances where <code>==</code> may be desirable such as when comparing a number to a value which might not be a number, but may have an equivalent value. Even in that case, it may be better to convert the value to a number first. If you do use <code>==</code>, make sure you understand the consequences and have a good reason for doing so. You'll also have to disable the JsHint check for that block using inline configuration <code>/* jshint eqeqeq: false */</code></p>
+
+<div class="highlight highlight-javascript"><pre><span class="k">if</span> <span class="p">(</span><span class="nx">a</span> <span class="o">===</span> <span class="nx">b</span><span class="p">)</span> <span class="c1">// good</span>
+<span class="k">if</span> <span class="p">(</span><span class="nx">a</span> <span class="o">==</span> <span class="nx">b</span><span class="p">)</span>  <span class="c1">// generally bad</span>
+</pre></div>
+
+<h3>
+<a name="file-template" class="anchor" href="#file-template"><span class="octicon octicon-link"></span></a>File Template</h3>
+
+<p>There is a <a href="https://gitlab.stackexchange.com/adserver/don-draper/blob/master/template.js">template.js</a> file in the root of the repository. Use it for most, if not all, new js files. Not all of the sections will be applicable for each new module, so feel free to edit or delete sections as necessary. Re-ordering of sections should be kept to a minimum, and you should have an actual reason for doing so.</p>
+
+<p>If you decide the template does not apply at all to your file, at a minimum, keep the <code>"use strict";</code> at the very top of the file. Doing so ensures our code will be more future-proof, makes certain errors more apparent, and enables harmony features. For a more complete description of strict mode, see: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions_and_function_scope/Strict_mode">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions_and_function_scope/Strict_mode</a></p>
+
+<h3>
+<a name="naming" class="anchor" href="#naming"><span class="octicon octicon-link"></span></a>Naming</h3>
+
+<p><code>TitleCasing</code> for constructors (functions you would call with the <code>new</code> keyword) and namespaces, uppercase <code>SNAKE_CASING</code> for constants, and <code>camelCasing</code> for everything else.</p>
+
+<div class="highlight highlight-javascript"><pre><span class="kd">var</span> <span class="nx">THIS_SHOULD_NOT_BE_CHANGED</span> <span class="o">=</span> <span class="s2">"don't do it"</span><span class="p">;</span>
+
+<span class="kd">function</span> <span class="nx">MyClass</span> <span class="p">(</span><span class="nx">x</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">member</span> <span class="o">=</span> <span class="nx">x</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">myFunction</span> <span class="p">(</span><span class="nx">x</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="nx">x</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">var</span> <span class="nx">myObj</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">MyClass</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+</pre></div>
+
+<h3>
+<a name="variable-declaration" class="anchor" href="#variable-declaration"><span class="octicon octicon-link"></span></a>Variable Declaration</h3>
+
+<p>There is no need to declare all of your variables at the top of a function. In fact, it is preferred to declare them where it is most logically relevant (such as just before its first use or assignment) in order to improve code readability.</p>
+
+<p><strong>Combining declarations</strong></p>
+
+<p>Anytime variable declaration is combined with an assignment, the declaration should not be combined with other variables. However, if multiple variables are being declared, but not assigned, they can, and probably should, be combined into a single declaration on one line.</p>
+
+<div class="highlight highlight-javascript"><pre><span class="kd">var</span> <span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">,</span> <span class="nx">c</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">d</span> <span class="o">=</span> <span class="mi">8</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">e</span> <span class="o">=</span> <span class="s1">'e'</span><span class="p">;</span>
+</pre></div>
+
+<p>The same is true for <code>require()</code> statements.</p>
+
+<div class="highlight highlight-javascript"><pre><span class="kd">var</span> <span class="nx">ModuleA</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'module-a'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">ModuleB</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'module-b'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">ModuleC</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'module-c'</span><span class="p">);</span>
+</pre></div>
+
+<p>This makes it very easy to add and remove variables, and no matter where you add or remove them, it will always create a one-line diff.</p>
+
+<p><strong>var vs. let</strong></p>
+
+<p>If you run node with the <code>--harmony</code> flag, you can use certain ECMAScript6 features, such as <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let">let</a>. Using <code>let</code> is a great idea... except there's one big problem: the V8 optimizer does not support it yet. This means the code will compile and run correctly, but will usually cause the entire function which encloses it to run slower (often a 2x performance difference). So, until V8 optimizes block-scoping, you should avoid using let/const in performance-critical code paths. However, generator functions are currently not optimized either, so feel free to use let/const inside generator functions without any additional performance penalties.</p>
+
+<h3>
+<a name="function-declaration" class="anchor" href="#function-declaration"><span class="octicon octicon-link"></span></a>Function Declaration</h3>
+
+<p>For non-member functions (functions which are not attached to an object or prototype), <strong>named functions are preferred</strong> over function pointers. The reason is because named functions can be called from anywhere inside the same scope, but function pointers can only be called after the point in code where the pointer is assigned.</p>
+
+<div class="highlight highlight-javascript"><pre><span class="nx">funcA</span><span class="p">();</span> <span class="c1">// &lt;-- this will work because it's a named function</span>
+<span class="nx">funcB</span><span class="p">();</span> <span class="c1">// &lt;-- this will not work because funcB is undefined</span>
+
+<span class="kd">function</span> <span class="nx">funcA</span> <span class="p">()</span> <span class="p">{}</span>
+<span class="kd">var</span> <span class="nx">funcB</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{};</span> <span class="c1">// try not to do this much</span>
+</pre></div>
+
+<p>Remember that named functions cannot be created in inner scopes (such as the inside of an if statement) according to the ES6 standard. V8 is not yet enforcing this, but it may eventually, and we should avoid doing so.</p>
+
+<div class="highlight highlight-javascript"><pre><span class="kd">function</span> <span class="nx">myFunction</span> <span class="p">()</span>
+<span class="p">{</span>
+    <span class="kd">function</span> <span class="nx">nestedInsideFunctionBlock</span> <span class="p">()</span> <span class="p">{}</span> <span class="c1">// OK</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="nx">test</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="kd">function</span> <span class="nx">nestedInsideInnerBlock</span> <span class="p">()</span> <span class="p">{}</span> <span class="c1">// BAD</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+<h3>
+<a name="module-exports" class="anchor" href="#module-exports"><span class="octicon octicon-link"></span></a>Module Exports</h3>
+
+<p>Don't use <code>module.exports</code> more than once in a module, and <strong><em>never</em></strong> use the <code>exports</code> shortcut. Instead, create an alias or use a constructor.</p>
+
+<p>For example, a module of static methods might do this:</p>
+
+<div class="highlight highlight-javascript"><pre><span class="kd">var</span> <span class="nx">MyModule</span> <span class="o">=</span> <span class="nx">module</span><span class="p">.</span><span class="nx">exports</span><span class="p">;</span>
+<span class="nx">MyModule</span><span class="p">.</span><span class="nx">funcA</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{};</span>
+</pre></div>
+
+<p>Or a constructor-style module might do this:</p>
+
+<div class="highlight highlight-javascript"><pre><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="nx">MyConstructor</span><span class="p">;</span>
+<span class="kd">function</span> <span class="nx">MyConstructor</span> <span class="p">(</span><span class="nx">x</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">x</span> <span class="o">=</span> <span class="nx">x</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nx">MyConstructor</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">funcA</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{};</span>
+</pre></div>
+
+<p>The alias name should be the same name as what you would call the module when requiring it from elsewhere.</p>
+
+<div class="highlight highlight-javascript"><pre><span class="kd">var</span> <span class="nx">MyModule</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'my-module'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">MyConstructor</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'my-constructor'</span><span class="p">);</span>
+</pre></div>
+
+<h3>
+<a name="require-statements" class="anchor" href="#require-statements"><span class="octicon octicon-link"></span></a>Require Statements</h3>
+
+<p>Because a require statement generally returns a constructor or a namespace, it is preferred to use TitleCasing for most imported dependencies. The added benefit of using TitleCasing instead of camelCasing is that it helps prevent name collisions with local variables or arguments. The only time the imported variable name should be lowercase is when what you are importing is a function (this was JSHint doesn't complain that you're trying to call a constructor without <code>new</code>).</p>
+
+<p>For example, you may want to use the argument name <code>path</code> in a function, but also want to call methods from the <code>path</code> module. Changing the require statement to <code>var Path = require('path');</code> facilitates both in a very intuitive and non-disruptive way.</p>
+
+<div class="highlight highlight-javascript"><pre><span class="kd">var</span> <span class="nx">ChildProcess</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'child_process'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">Fs</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'fs'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">Path</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'path'</span><span class="p">);</span>
+</pre></div>
+
+<p><strong>Also:</strong> keep require statements in alphabetical order. It simply makes it a lot easier to see, at a glance, if the dependency you're looking for has already been included.</p>
+
+<h3>
+<a name="getters-and-setters" class="anchor" href="#getters-and-setters"><span class="octicon octicon-link"></span></a>Getters and Setters</h3>
+
+<p>JavaScript has several ways of defining getters and setters. Until the simple <code>get</code> and <code>set</code> syntax is optimized in V8, use <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty">Object.defineProperty</a> or <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperties">Object.defineProperties</a> to create getter and setter properties. <code>defineProperty</code> is preferred over <code>defineProperties</code> because it gives better autocomplete in WebStorm.</p>
+
+<div class="highlight highlight-javascript"><pre><span class="kd">function</span> <span class="nx">MyClass</span> <span class="p">(</span><span class="nx">miles</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">miles</span> <span class="o">=</span> <span class="nx">miles</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">MyClass</span><span class="p">.</span><span class="nx">prototype</span><span class="p">,</span> <span class="s1">'nauticalMiles'</span><span class="p">,</span>
+<span class="p">{</span>
+    <span class="nx">get</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">miles</span> <span class="o">/</span> <span class="mf">1.15</span><span class="p">;</span> <span class="p">}</span>
+<span class="p">});</span>
+
+<span class="kd">var</span> <span class="nx">x</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">MyClass</span><span class="p">(</span><span class="mi">7</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">x</span><span class="p">.</span><span class="nx">nauticalMiles</span><span class="p">);</span> <span class="c1">// 6.086956521739131</span>
+</pre></div>
+
+<h2>
+<a name="code-validation" class="anchor" href="#code-validation"><span class="octicon octicon-link"></span></a>Code Validation</h2>
+
+<p>You should consider using <a href="http://www.jshint.com/">JSHint</a> and other tools to perform static analysis before deploying code.</p>
+
+<h2>
+<a name="third-party" class="anchor" href="#third-party"><span class="octicon octicon-link"></span></a>Third Party</h2>
+
+<p>Third party tools are great. It would take us forever to write anything if we weren't building off the shoulders of others. There are a few points to keep in mind when considering whether to include third party modules, and how to use them.</p>
+
+<h3>
+<a name="before-including" class="anchor" href="#before-including"><span class="octicon octicon-link"></span></a>Before Including</h3>
+
+<p>First, consider whether the module really adds functionality value, or is more equivalent to syntactic sugar. If it's the latter, be wary of how it will impact performance. In many cases, it is simply not worth including. On the other hand, if it solves a problem for you in less time than it would take for you to write your own solution, go for it.</p>
+
+<p>We should try to remember to check the license before including a new dependency, although this can be a little bit difficult considering the nested dependencies. Luckily, almost everything in the Node.js world is MIT/BSD/Apache licensed, which is great for us.</p>
+
+<h3>
+<a name="including" class="anchor" href="#including"><span class="octicon octicon-link"></span></a>Including</h3>
+
+<p>Always remember to use the <code>--save</code> flag when npm installing so that the dependency is automatically added to package.json.</p>
+
+<h3>
+<a name="usage" class="anchor" href="#usage"><span class="octicon octicon-link"></span></a>Usage</h3>
+
+<p><strong>Object Wrapping</strong></p>
+
+<p>Don't use third party libraries to wrap built-in objects. JavaScript's built-in <code>Date</code> object works great for almost everything you could need to do with dates, so don't use something like <code>moment()</code>. When a function specifies an argument like <code>startDate</code> it should be a <code>Date</code> object, or a number at the very least, not a <code>moment</code> object. However, what moment <em>is</em> good at is formatting the output of a date. So if you have a need to output a date in a particular format, feel free to use moment for that, just don't pass the object around pretending it's a Date.</p>
+
+<p><strong>Syntax Sugar</strong></p>
+
+<p>Try not to get carried away with using libraries like <a href="http://underscorejs.org/">underscore</a> for syntax sugar. Partly for readability, partly for performance, and partly because there are tools built-in to JavaScript to do the same things, only faster than the library can. Remember that, for server-side JavaScript, there is absolutely no need to worry about browser compatibility issues.</p>
+
+<p>For example, don't use <code>_.keys(obj)</code>. Just use <code>Object.keys(obj)</code>.</p>
+
+<p>On the other hand, <code>_.sample(arr, 6)</code> doesn't have a built-in counterpart, and may be a quick and readable way to sample elements from an array.</p>
+
+<p><strong>Moral of the story</strong></p>
+
+<p>Get to know the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects">Standard built-in objects</a> and the <a href="http://nodejs.org/api/">Node.js standard library</a> if you're not already pretty familiar with them. They can often do more than people realize at first.</p>
+
+<h2>
+<a name="performance" class="anchor" href="#performance"><span class="octicon octicon-link"></span></a>Performance</h2>
+
+<p>This section provides some tips for writing more performant code.</p>
+
+<h3>
+<a name="iterations" class="anchor" href="#iterations"><span class="octicon octicon-link"></span></a>Iterations</h3>
+
+<p><strong>for...in</strong></p>
+
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...in">for...in</a> should generally not be used for Arrays, but is typically okay for objects. Keep in mind that for...in iterates over enumerable properties in the object's prototype, which may produce unexpected results. To only iterate over an object's own properties, use <code>Object.keys()</code> and then iterate over the returned array. This is faster than checking <code>.hasOwnProperty()</code> on each iteration.</p>
+
+<div class="highlight highlight-javascript"><pre><span class="kd">var</span> <span class="nx">ownProps</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">keys</span><span class="p">(</span><span class="nx">obj</span><span class="p">);</span>
+<span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">ownProps</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="nx">doSomething</span><span class="p">(</span><span class="nx">obj</span><span class="p">[</span><span class="nx">ownProps</span><span class="p">[</span><span class="nx">i</span><span class="p">]]);</span>
+<span class="p">}</span>
+</pre></div>
+
+<p><strong>for vs. forEach</strong></p>
+
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach">Array#forEach</a> should usually be avoided. A good old fashion <code>for</code> loop is an order of magnitude faster and often easier to read. Even when all the loop does is call a function on every iteration, it is still drastically faster than the <code>forEach</code> method.</p>
+
+<div class="highlight highlight-js"><pre><span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">arr</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="nx">doSomething</span><span class="p">(</span><span class="nx">arr</span><span class="p">[</span><span class="nx">i</span><span class="p">]);</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>If you want a very slight performance improvement, on really long arrays, cache the <code>arr.length</code> into a local variable, and then use that in the loop condition instead.</p>
+
+<p><a href="http://jsperf.com/se-for-vs-foreach">jsperf: for vs. forEach</a></p>
+
+<p><strong>Array Iterator Functions</strong></p>
+
+<p>What is true about <code>Array#forEach</code> is true for all of the Array iterator functions, such as <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map">map</a>. Consider that this code:</p>
+
+<div class="highlight highlight-javascript"><pre><span class="kd">var</span> <span class="nx">copy</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Array</span><span class="p">(</span><span class="nx">items</span><span class="p">.</span><span class="nx">length</span><span class="p">);</span>
+<span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">items</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span>
+    <span class="nx">copy</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">=</span> <span class="nx">items</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
+</pre></div>
+
+<p>is orders of magnitude faster than:</p>
+
+<div class="highlight highlight-javascript"><pre><span class="kd">var</span> <span class="nx">copy</span> <span class="o">=</span> <span class="nx">items</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">item</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">item</span><span class="p">;</span> <span class="p">});</span>
+</pre></div>
+
+<p>See: <a href="http://jsperf.com/se-map-vs-for-loop">jsperf: map vs for loop</a></p>
+
+<p>This may not be a big deal when dealing with arrays with only a handful of elements in a code path which isn't executed repeatedly on every request. However, if there is any concern that the code path may produce a bottleneck, simply use a loop instead.</p>
+
+<p><strong>TL;DR</strong></p>
+
+<p>Good old fashion for loops are great. Any other form of iterating will <em>always</em> hurt performance to some degree.</p>
+
+<h3>
+<a name="conversions" class="anchor" href="#conversions"><span class="octicon octicon-link"></span></a>Conversions</h3>
+
+<p><strong>Booleans</strong></p>
+
+<p><code>!!val</code> is faster than <code>Boolean(val)</code>. <a href="http://jsperf.com/se-not-not-vs-boolean">jsperf: !! vs. Boolean</a></p>
+
+<p><strong>Numbers</strong></p>
+
+<p><code>Number(val)</code> is faster than <code>+val</code> unless val is a string literal, or a local variable which was initialized from a string variable... but why would you ever create a string literal and then convert it back to a number? <a href="http://jsperf.com/se-plus-vs-number">jsperf: + vs Number</a></p>
+
+<p><code>val|0</code> is marginally faster than <code>Math.floor(val)</code>. For large numbers, <code>Math.floor()</code> is safer.</p>
+
+<p><strong>Strings</strong></p>
+
+<p><code>val+''</code> is faster than <code>val.toString()</code> or <code>String(val)</code>, however, it may have different behavior on objects which have both <code>valueOf()</code> and <code>toString()</code> methods defined. If there is any doubt about what type of object it is, <code>String(val)</code> is safer.</p>
+
+<h3>
+<a name="additional-reading" class="anchor" href="#additional-reading"><span class="octicon octicon-link"></span></a>Additional Reading</h3>
+
+<ul>
+<li>
+<p><a href="https://github.com/petkaantonov/bluebird/wiki/Optimization-killers">Optimization Killers</a></p>
+
+<p>Describes many of the scenarios which will prevent V8 from optimizing a function.</p>
+</li>
+<li>
+<p><a href="http://www.html5rocks.com/en/tutorials/speed/v8/">Performance Tips for JavaScript in V8</a></p>
+
+<p>Describes how V8 uses "hidden classes" and what kinds of behavior hurt that optimization. It also links to a great talk by <a href="http://www.youtube.com/watch?v=UJPdhx5zTaw">Daniel Clifford at Google I/O 2012</a> which covers much of the same ground as the article, but is well worth the watch if you have time.</p>
+</li>
+</ul><h2>
+<a name="workflow" class="anchor" href="#workflow"><span class="octicon octicon-link"></span></a>Workflow</h2>
+
+<h3>
+<a name="ide" class="anchor" href="#ide"><span class="octicon octicon-link"></span></a>IDE</h3>
+
+<p>If you prefer to work in an IDE, <a href="http://www.jetbrains.com/webstorm/">WebStorm</a> is recommended. You can download a 30-day trial, and a license is around $50.</p>
+
+<ul>
+<li>Code completion</li>
+<li>Integrated debugging</li>
+<li>Git integration</li>
+<li>Code inspection</li>
+</ul><p>If you do use WebStorm, consider downloading my pre-made <a href="https://github.com/bretcope/webstorm-settings">WebStormSettings.jar</a> and importing some, or all, of the settings. Go to <code>File-&gt;Import Settings</code> and it will give you a window with several checkboxes allowing you to selectively import settings from the jar. In particular, if you want to use my codeing style, you should import the "Code style schemes" setting. After import, go to <code>File-&gt;Settings-&gt;Code Style</code> and select <code>Scheme: Bret</code> and apply. It also has a preset called <code>General</code> which is more similar to the typical JS style (two spaces, opening braces on the same line, etc) which may be useful for other projects.</p>
+
+<h4>
+<a name="debugging-node-011x" class="anchor" href="#debugging-node-011x"><span class="octicon octicon-link"></span></a>Debugging Node 0.11.x</h4>
+
+<p>There is a bug in 0.11.13 (which will be fixed in the next version) relating to inspecting globals. WebStorm, by default, tries to read globals when it starts debugging a process. This causes it to crash. The work-around is to tell WebStorm to not automatically load globals. Go to <code>IDE_INSTALLATION_DIR/bin</code> and edit the file ending in <code>.vmoptions</code>. Add the line:</p>
+
+<pre><code>-Djs.debugger.load.global.variables.on.start=false
+</code></pre>
+
+<p>Restart WebStorm for the change to take effect.</p>
+
+<h3>
+<a name="when-to-use-a-git-branch" class="anchor" href="#when-to-use-a-git-branch"><span class="octicon octicon-link"></span></a>When to use a git branch</h3>
+
+<p>When working on a team where everyone has push access, most work should be done on the <strong>master</strong> branch, and rebase is preferred over merging (<code>git pull --rebase</code>). Feature flags are preferred over branching. Separate branches should be used when a new feature or change is experimental, but only if it is unlikely to cause merge conflicts. Refactoring of existing code should <strong><em>never</em></strong> be done on a branch other than master. It is your responsibility to make sure your branch stays up to date with master during development (use <code>git pull origin master</code> to merge changes from master into your branch).</p>
+
+<p>Pull requests are a great way to do code reviews, however, there are other ways of asking for code reviews for simple things, such as drop a link to the diff in chat before deploying production. So don't feel like a PR is the only way to get a second set of eyes on something.</p>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">bret.codes maintained by <a href="https://github.com/bretcope">bretcope</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>
