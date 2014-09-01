@@ -294,9 +294,9 @@ function ModuleName ()
 
 <p>The same is true for <code>require()</code> statements.</p>
 
-<div class="highlight highlight-javascript"><pre><span class="kd">var</span> <span class="nx">ModuleA</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'module-a'</span><span class="p">);</span>
-<span class="kd">var</span> <span class="nx">ModuleB</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'module-b'</span><span class="p">);</span>
-<span class="kd">var</span> <span class="nx">ModuleC</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'module-c'</span><span class="p">);</span>
+<div class="highlight highlight-javascript"><pre><span class="kd">var</span> <span class="nx">ModuleA</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'ModuleA'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">ModuleB</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'ModuleB'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">ModuleC</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'ModuleC'</span><span class="p">);</span>
 </pre></div>
 
 <p>This makes it very easy to add and remove variables, and no matter where you add or remove them, it will always create a one-line diff.</p>
@@ -352,10 +352,10 @@ function ModuleName ()
 <span class="nx">MyConstructor</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">funcA</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{};</span>
 </pre></div>
 
-<p>The alias name should be the same name as what you would call the module when requiring it from elsewhere.</p>
+<p>The alias name should be the name of the file (minus <code>.js</code>) and the same as what you would call the module when requiring it from elsewhere.</p>
 
-<div class="highlight highlight-javascript"><pre><span class="kd">var</span> <span class="nx">MyModule</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'my-module'</span><span class="p">);</span>
-<span class="kd">var</span> <span class="nx">MyConstructor</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'my-constructor'</span><span class="p">);</span>
+<div class="highlight highlight-javascript"><pre><span class="kd">var</span> <span class="nx">MyModule</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'MyModule'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">MyConstructor</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'MyConstructor'</span><span class="p">);</span>
 </pre></div>
 
 <h3>
