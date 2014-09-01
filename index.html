@@ -4,11 +4,11 @@
   <head>
     <meta charset='utf-8'>
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <meta name="description" content="bret.codes : JavaScript Tips and Style Guide">
+    <meta name="description" content="js.bret.codes : JavaScript Tips and Style Guide">
 
     <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
 
-    <title>bret.codes</title>
+    <title>js.bret.codes</title>
   </head>
 
   <body>
@@ -16,14 +16,14 @@
     <!-- HEADER -->
     <div id="header_wrap" class="outer">
         <header class="inner">
-          <a id="forkme_banner" href="https://github.com/bretcope/bret.codes">View on GitHub</a>
+          <a id="forkme_banner" href="https://github.com/bretcope/js.bret.codes">View on GitHub</a>
 
-          <h1 id="project_title">bret.codes</h1>
+          <h1 id="project_title">js.bret.codes</h1>
           <h2 id="project_tagline">JavaScript Tips and Style Guide</h2>
 
             <section id="downloads">
-              <a class="zip_download_link" href="https://github.com/bretcope/bret.codes/zipball/master">Download this project as a .zip file</a>
-              <a class="tar_download_link" href="https://github.com/bretcope/bret.codes/tarball/master">Download this project as a tar.gz file</a>
+              <a class="zip_download_link" href="https://github.com/bretcope/js.bret.codes/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/bretcope/js.bret.codes/tarball/master">Download this project as a tar.gz file</a>
             </section>
         </header>
     </div>
@@ -203,7 +203,56 @@
 <h3>
 <a name="file-template" class="anchor" href="#file-template"><span class="octicon octicon-link"></span></a>File Template</h3>
 
-<p>There is a <a href="https://gitlab.stackexchange.com/adserver/don-draper/blob/master/template.js">template.js</a> file in the root of the repository. Use it for most, if not all, new js files. Not all of the sections will be applicable for each new module, so feel free to edit or delete sections as necessary. Re-ordering of sections should be kept to a minimum, and you should have an actual reason for doing so.</p>
+<p>I use the following template for most non-static JavaScript modules:</p>
+
+<pre><code>"use strict";
+/* -------------------------------------------------------------------
+ * Require Statements &lt;&lt; Keep in alphabetical order &gt;&gt;
+ * ---------------------------------------------------------------- */
+
+//
+
+/* =============================================================================
+ * 
+ * ModuleName - DESCRIPTION
+ *  
+ * ========================================================================== */
+
+module.exports = ModuleName;
+
+function ModuleName ()
+{
+}
+
+/* -------------------------------------------------------------------
+ * Getters / Setters
+ * ---------------------------------------------------------------- */
+
+//
+
+/* -------------------------------------------------------------------
+ * Static Methods &lt;&lt; Keep in alphabetical order &gt;&gt;
+ * ---------------------------------------------------------------- */
+
+//
+
+/* -------------------------------------------------------------------
+ * Prototype Methods &lt;&lt; Keep in alphabetical order &gt;&gt;
+ * ---------------------------------------------------------------- */
+
+//
+
+/* -------------------------------------------------------------------
+ * Private Methods &lt;&lt; Keep in alphabetical order &gt;&gt;
+ * ---------------------------------------------------------------- */
+
+//
+
+</code></pre>
+
+<p>Static modules follow a similar format, but don't typically include a constructor (use <code>var ModuleName = module.exports</code> instead) or the Prototype Methods section.</p>
+
+<p>Not all of the sections will be applicable for each new module, so feel free to edit or delete sections as necessary. Re-ordering of sections should be kept to a minimum, and you should have an actual reason for doing so.</p>
 
 <p>If you decide the template does not apply at all to your file, at a minimum, keep the <code>"use strict";</code> at the very top of the file. Doing so ensures our code will be more future-proof, makes certain errors more apparent, and enables harmony features. For a more complete description of strict mode, see: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions_and_function_scope/Strict_mode">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions_and_function_scope/Strict_mode</a></p>
 
@@ -504,7 +553,7 @@
     <!-- FOOTER  -->
     <div id="footer_wrap" class="outer">
       <footer class="inner">
-        <p class="copyright">bret.codes maintained by <a href="https://github.com/bretcope">bretcope</a></p>
+        <p class="copyright">js.bret.codes maintained by <a href="https://github.com/bretcope">bretcope</a></p>
         <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
       </footer>
     </div>
